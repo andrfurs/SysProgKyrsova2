@@ -1,0 +1,20 @@
+TARGET = Calculator
+CC = g++
+LIB = libcalculator.a
+
+all : $(TARGET)
+
+$(TARGET) : main.o calculator.o $(LIB)
+	$(CC) main.o calculator.o -o $(TARGET)
+
+main.o : main.cpp
+	$(CC) -c main.cpp -o main.o
+
+calculator.o : calculator.cpp
+	$(CC) -c calculator.cpp -o calculator.o
+
+libcalculator.a : calculator.o
+	ar rcs libcalculator.a calculator.o
+
+clean : 
+	rm $(TARGET) *.o *.a
